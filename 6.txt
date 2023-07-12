@@ -1,0 +1,12 @@
+Question - In db sample_airbnb, collection listingsAndReviews, find the average price of all properties in Porto market (address.market)
+
+Query - db.listingsAndReviews.aggregate([{
+    $match:{"address.market":'Porto'}
+},
+{
+    $group:{
+        _id:"address.market",
+        avgPrice:{$avg:"$price"}
+    }
+}
+])

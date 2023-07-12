@@ -1,0 +1,12 @@
+Question - In db sample_airbnb, collection listingsAndReviews, find the number of properties in 10km range of the coordinates - [-8.61308, 41.1413] (This is long first, then lat) (Hint: check geo stages and operators in MongoDB)
+
+Query - db.listingsAndReviews.find({
+     "address.location":
+       { $near:
+          {
+            $geometry: { type: "Point",  coordinates: [ -8.61308, 41.1413 ] },
+            $minDistance: 0,
+            $maxDistance: 10000
+          }
+       }
+   })

@@ -1,0 +1,5 @@
+Question - In db sample_mflix, collections movies and comments, find the name/title of the movie having the most comments...
+
+Query - db.movies.aggregate([ { $lookup: { from: "comments", localField: "_id", foreignField: "movie_id", as: "movieComments" } }, { $unwind: { path: "$movieComments" } }, { $group: { _id: "$movieComments.movie_id", count: { $sum: 1 } } }, { $sort: { count: -1 } }, { $limit: 1 }])
+
+Note - not able to execute getting exceeded operation time limit

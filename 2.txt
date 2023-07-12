@@ -1,0 +1,3 @@
+Question  - In db sample_mflix, collection movies, find the unique genres for country France
+
+Query - db.movies.aggregate([{$unwind:"$countries"},{$match:{countries:'France'}},{$unwind:"$genres"},{$group:{"_id":"$genres"}}])
